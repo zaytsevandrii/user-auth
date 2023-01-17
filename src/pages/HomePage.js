@@ -1,11 +1,19 @@
-import React from "react"
-import { Link, redirect } from "react-router-dom"
-
+import { useAuth } from "hooks/use-auth"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import { removeUser } from "store/slices/userSlice"
 const HomePage = () => {
+    const dispatch = useDispatch()
+    const { isAuth, email } = useAuth()
     return (
         <div>
-            <Link to='/login'>
-                <button>Login</button>
+            <h1>Welcome friend</h1>
+
+            <button>Login</button>
+
+            <Link to="/login">
+                <button onClick={() => dispatch(removeUser())}>Logout</button>
             </Link>
         </div>
     )
